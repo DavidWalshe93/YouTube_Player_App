@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btnPlaySingle"
+        android:id="@+id/btnPlayVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -24,5 +24,5 @@
         android:layout_marginTop="16dp"
         android:text="Play Playlist"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlaySingle" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayVideo" />
 </android.support.constraint.ConstraintLayout>

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPlaySingle:
                 intent = new Intent(this, YoutubeActivity.class);
                 break;
-            case R.id.btnPlayList:
+            case R.id.btnStandalone:
                 intent = new Intent(this, StandaloneActivity.class);
                 break;
             default:

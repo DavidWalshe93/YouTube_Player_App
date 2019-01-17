@@ -16,7 +16,7 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standalone);
 
-        Button btnPlayVideo = (Button) findViewById(R.id.btnPlaySingle);
+        Button btnPlayVideo = (Button) findViewById(R.id.btnPlayVideo);
         Button btnPlayList = (Button) findViewById(R.id.btnPlayList);
 
         btnPlayVideo.setOnClickListener(this);
@@ -28,12 +28,12 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
         Intent intent = null;
 
         switch(v.getId()){
-            case R.id.btnPlaySingle:
-                intent = YouTubeStandalonePlayer.createVideoIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_VIDEO_ID);
+            case R.id.btnPlayVideo:
+                intent = YouTubeStandalonePlayer.createVideoIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_VIDEO_ID, 0, true, true);
                 break;
 
             case R.id.btnPlayList:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST);
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST, 0, 0, true, true);
                 break;
 
             default:
