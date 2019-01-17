@@ -3,6 +3,7 @@ package com.example.dwalshe.youtubeplayer;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -24,9 +25,10 @@ public class YoutubeActivity extends YouTubeBaseActivity
         ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube, null);
         setContentView(layout);
 
-        YouTubePlayerView player = new YouTubePlayerView(this);
-        player.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        player.addView(player);
+        YouTubePlayerView playerView = new YouTubePlayerView(this);
+        playerView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        playerView.addView(playerView);
+        playerView.initialize(GOOGLE_API_KEY, this);
     }
 
     @Override
@@ -36,6 +38,13 @@ public class YoutubeActivity extends YouTubeBaseActivity
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        final int REQUEST_CODE = 1;
 
+        if (youTubeInitializationResult.isUserRecoverableError()) {
+            youTubeInitializationResult.getErrorDialog(this, REQUEST_CODE).show();
+        } else {
+            String errorMessage = String.format("There was an error initializing the YouTubePlayer (%1$s),", youTubeInitializationResult.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        }
     }
 }
