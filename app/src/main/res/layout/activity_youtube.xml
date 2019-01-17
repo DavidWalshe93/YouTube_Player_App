@@ -5,6 +5,6 @@
     android:id="@+id/activity_youtube"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".YoutubeActivity">
+    tools:context="com.example.dwalshe.youtubeplayer.YoutubeActivity">
 
 </android.support.constraint.ConstraintLayout>

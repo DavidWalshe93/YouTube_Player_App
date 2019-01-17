@@ -15,8 +15,8 @@ public class YoutubeActivity extends YouTubeBaseActivity
         implements YouTubePlayer.OnInitializedListener {
 
     static final String GOOGLE_API_KEY = "";
-    static final String YOUTUBE_VIDEO_ID = "19lD1-QWpWw";
-    static final String YOUTUBE_PLAYLIST = "TODO";
+    static final String YOUTUBE_VIDEO_ID = "ElpitAfkRS4";
+    static final String YOUTUBE_PLAYLIST = "PLXtTjtWmQhg1SsviTmKkWO5n0a_-T0bnD";
 
     private static final String TAG = "YoutubeActivity";
 
@@ -28,10 +28,10 @@ public class YoutubeActivity extends YouTubeBaseActivity
         ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube, null);
         setContentView(layout);
 
-        YouTubePlayerView playerView = new YouTubePlayerView(this);
-        playerView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        playerView.addView(playerView);
-        playerView.initialize(GOOGLE_API_KEY, this);
+        YouTubePlayerView playerView = new YouTubePlayerView(this);             // Create the Youtube player View
+        playerView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)); // Constrain it in the layout view
+        layout.addView(playerView); // Add it to the app layout dynamically
+        playerView.initialize(GOOGLE_API_KEY, this);    // Init the player using the API Key Provided by Google to run Youtube.
     }
 
     @Override
