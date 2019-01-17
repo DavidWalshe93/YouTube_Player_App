@@ -37,8 +37,10 @@ public class YoutubeActivity extends YouTubeBaseActivity
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
-        Toast.makeText(this, "Initialized YouTube Player successfully", Toast.LENGTH_LONG);
+        Toast.makeText(this, "Initialized YouTube Player successfully", Toast.LENGTH_LONG).show();
 
+        youTubePlayer.setPlaybackEventListener(playbackEventListener);
+        youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
         if(!wasRestored) {
             youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
         }
@@ -55,4 +57,64 @@ public class YoutubeActivity extends YouTubeBaseActivity
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         }
     }
+
+    private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
+        @Override
+        public void onPlaying() {
+            Toast.makeText(YoutubeActivity.this, "Video is Playing", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onPaused() {
+            Toast.makeText(YoutubeActivity.this, "Video is Paused", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onStopped() {
+            Toast.makeText(YoutubeActivity.this, "Video was Stopped", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onBuffering(boolean b) {
+            Toast.makeText(YoutubeActivity.this, "Video is Buffering", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onSeekTo(int i) {
+            Toast.makeText(YoutubeActivity.this, "Video Seek To: " + i, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    YouTubePlayer.PlayerStateChangeListener playerStateChangeListener = new YouTubePlayer.PlayerStateChangeListener() {
+        @Override
+        public void onLoading() {
+           Toast.makeText(YoutubeActivity.this, "Video Loading", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLoaded(String s) {
+            Toast.makeText(YoutubeActivity.this, "Video Loaded", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdStarted() {
+            Toast.makeText(YoutubeActivity.this, "Click ad now", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onVideoStarted() {
+            Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onVideoEnded() {
+            Toast.makeText(YoutubeActivity.this, "Congrats you finished the video", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(YouTubePlayer.ErrorReason errorReason) {
+
+        }
+    };
 }
