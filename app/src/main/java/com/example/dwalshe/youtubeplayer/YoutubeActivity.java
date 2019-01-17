@@ -2,6 +2,7 @@ package com.example.dwalshe.youtubeplayer;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ public class YoutubeActivity extends YouTubeBaseActivity
     static final String GOOGLE_API_KEY = "";
     static final String YOUTUBE_VIDEO_ID = "19lD1-QWpWw";
     static final String YOUTUBE_PLAYLIST = "TODO";
+
+    private static final String TAG = "YoutubeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,13 @@ public class YoutubeActivity extends YouTubeBaseActivity
     }
 
     @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+        Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
+        Toast.makeText(this, "Initialized YouTube Player successfully", Toast.LENGTH_LONG);
 
+        if(!wasRestored) {
+            youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
+        }
     }
 
     @Override
